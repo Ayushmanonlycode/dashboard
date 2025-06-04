@@ -76,7 +76,7 @@ const defaultApps = [
   {
     title: "Goal Tracker",
     description: "Track and manage your personal and professional goals",
-    href: "https://todo-app-rouge-five-42.vercel.app/",
+    href: "https://goal-tracker-lime.vercel.app/",
     icon: Target,
   },
   {
