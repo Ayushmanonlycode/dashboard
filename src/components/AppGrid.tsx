@@ -82,7 +82,7 @@ const defaultApps = [
   {
     title: "Project Management",
     description: "Organize and manage your projects efficiently",
-    href: "https://your-project-manager.com",
+    href: "https://project-management-woad-eta.vercel.app/",
     icon: FolderKanban,
   },
   {
