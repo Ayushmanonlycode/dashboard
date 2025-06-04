@@ -1,68 +1,28 @@
 import React from "react";
 import AppGrid from "./AppGrid";
-import { LucideGithub } from "lucide-react";
-import { motion } from "framer-motion";
+import { LucideGithub, Sun, Moon } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "../context/ThemeContext";
 
 const Home = () => {
-  // Sample application data - replace with your actual applications
-  const applications = [
-    {
-      id: 1,
-      title: "Analytics Dashboard",
-      description: "View real-time analytics and reports",
-      icon: "BarChart",
-      url: "https://example.com/analytics",
-      color: "bg-blue-500 hover:bg-blue-600",
-    },
-    {
-      id: 2,
-      title: "Content Management",
-      description: "Manage your website content",
-      icon: "FileText",
-      url: "https://example.com/cms",
-      color: "bg-green-500 hover:bg-green-600",
-    },
-    {
-      id: 3,
-      title: "User Portal",
-      description: "Access user management tools",
-      icon: "Users",
-      url: "https://example.com/users",
-      color: "bg-purple-500 hover:bg-purple-600",
-    },
-    {
-      id: 4,
-      title: "File Storage",
-      description: "Access your cloud storage",
-      icon: "HardDrive",
-      url: "https://example.com/storage",
-      color: "bg-amber-500 hover:bg-amber-600",
-    },
-    {
-      id: 5,
-      title: "Settings",
-      description: "Configure system settings",
-      icon: "Settings",
-      url: "https://example.com/settings",
-      color: "bg-rose-500 hover:bg-rose-600",
-    },
-  ];
+  const { theme, toggleTheme } = useTheme();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/30 flex flex-col">
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
       {/* Header */}
       <motion.header
-        className="bg-white/80 backdrop-blur-md shadow-lg border-b border-white/20 py-6"
+        className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg border-b border-gray-200 dark:border-gray-800 py-6 sticky top-0 z-50 transition-colors duration-300"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
         <div className="container mx-auto px-4 flex justify-between items-center">
           <motion.h1
-            className="text-3xl font-bold bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 bg-clip-text text-transparent"
+            className="text-4xl font-bold text-gray-900 dark:text-white transition-colors duration-300"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
+            whileHover={{ scale: 1.02 }}
           >
             Application Dashboard
           </motion.h1>
@@ -72,9 +32,42 @@ const Home = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <span className="text-sm text-gray-600 font-medium">
+            <motion.span 
+              className="text-sm text-gray-700 dark:text-gray-200 font-medium bg-gray-100 dark:bg-gray-800 px-4 py-2 rounded-full shadow-sm transition-colors duration-300"
+              whileHover={{ scale: 1.05 }}
+            >
               Welcome to your dashboard
-            </span>
+            </motion.span>
+            <motion.button
+              onClick={toggleTheme}
+              className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <AnimatePresence mode="wait">
+                {theme === 'light' ? (
+                  <motion.div
+                    key="moon"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Moon className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="sun"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Sun className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
           </motion.div>
         </div>
       </motion.header>
@@ -88,15 +81,16 @@ const Home = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <motion.h2
-            className="text-2xl font-bold text-gray-800 mb-6 text-center"
+            className="text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center transition-colors duration-300"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
+            whileHover={{ scale: 1.02 }}
           >
             Quick Access
           </motion.h2>
           <motion.p
-            className="text-gray-600 mb-10 text-center max-w-2xl mx-auto text-lg"
+            className="text-gray-600 dark:text-gray-300 mb-10 text-center max-w-2xl mx-auto text-lg transition-colors duration-300"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.6 }}
@@ -106,28 +100,37 @@ const Home = () => {
           </motion.p>
 
           {/* Application Grid */}
-          <AppGrid applications={applications} />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+          >
+            <AppGrid />
+          </motion.div>
         </motion.section>
       </main>
 
       {/* Footer */}
       <motion.footer
-        className="bg-white/80 backdrop-blur-md py-8 border-t border-white/20"
+        className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-md py-8 border-t border-gray-200 dark:border-gray-800 transition-colors duration-300"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.8 }}
       >
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-sm text-gray-600 mb-4 md:mb-0 font-medium">
-              © {new Date().getFullYear()} Your Company. All rights reserved.
-            </div>
+            <motion.div 
+              className="text-sm text-gray-600 dark:text-gray-300 mb-4 md:mb-0 font-medium transition-colors duration-300"
+              whileHover={{ scale: 1.02 }}
+            >
+              © {new Date().getFullYear()} Ayushman. All rights reserved.
+            </motion.div>
             <div className="flex items-center space-x-4">
               <motion.a
-                href="https://github.com/your-repo"
+                href="https://github.com/Ayushmanonlycode"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-gray-700 transition-colors p-2 rounded-full hover:bg-gray-100"
+                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.95 }}
               >

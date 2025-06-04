@@ -22,15 +22,15 @@ const AppButton = ({
 }: AppButtonProps) => {
   const colorVariants = {
     default:
-      "bg-gradient-to-br from-white to-gray-50 hover:from-gray-50 hover:to-gray-100 border border-gray-200 shadow-lg hover:shadow-xl",
+      "bg-gradient-to-br from-white to-gray-50 hover:from-gray-50 hover:to-gray-100 dark:from-gray-700 dark:to-gray-800 dark:hover:from-gray-600 dark:hover:to-gray-700 border border-gray-200 dark:border-gray-600 shadow-lg hover:shadow-xl",
     primary:
       "bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white shadow-lg hover:shadow-xl",
     secondary:
-      "bg-gradient-to-br from-gray-100 to-gray-200 hover:from-gray-200 hover:to-gray-300 text-gray-800 shadow-lg hover:shadow-xl",
+      "bg-gradient-to-br from-gray-100 to-gray-200 hover:from-gray-200 hover:to-gray-300 dark:from-gray-600 dark:to-gray-700 dark:hover:from-gray-500 dark:hover:to-gray-600 text-gray-800 dark:text-gray-100 shadow-lg hover:shadow-xl",
     destructive:
       "bg-gradient-to-br from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white shadow-lg hover:shadow-xl",
     outline:
-      "bg-gradient-to-br from-transparent to-gray-50 border-2 border-gray-300 hover:border-gray-400 hover:from-gray-50 hover:to-gray-100 shadow-lg hover:shadow-xl",
+      "bg-gradient-to-br from-transparent to-gray-50 dark:from-gray-700 dark:to-gray-800 border-2 border-gray-300 dark:border-gray-500 hover:border-gray-400 dark:hover:border-gray-400 hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-600 dark:hover:to-gray-700 shadow-lg hover:shadow-xl",
   };
 
   return (
@@ -76,15 +76,16 @@ const AppButton = ({
             <motion.div
               whileHover={{ rotate: 5, scale: 1.1 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="text-gray-700 dark:text-gray-200"
             >
               <Icon className="h-14 w-14 mb-2 relative z-10" />
             </motion.div>
           )}
 
           {/* Content */}
-          <div className="text-center relative z-10">
+          <div className="text-center">
             <motion.h3
-              className="text-xl font-bold mb-2"
+              className="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
             >
@@ -92,7 +93,7 @@ const AppButton = ({
             </motion.h3>
             {description && (
               <motion.p
-                className="text-sm text-muted-foreground leading-relaxed"
+                className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed"
                 initial={{ opacity: 0.8 }}
                 whileHover={{ opacity: 1 }}
                 transition={{ duration: 0.2 }}

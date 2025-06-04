@@ -50,7 +50,7 @@ const AppGrid = ({ apps = defaultApps }: AppGridProps) => {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto p-6 bg-background">
+    <div className="w-full max-w-7xl mx-auto p-6">
       <motion.div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         variants={containerVariants}
@@ -76,7 +76,7 @@ const defaultApps = [
   {
     title: "Goal Tracker",
     description: "Track and manage your personal and professional goals",
-    href: "https://your-goal-tracker.com",
+    href: "https://todo-app-rouge-five-42.vercel.app/",
     icon: Target,
   },
   {
@@ -88,19 +88,19 @@ const defaultApps = [
   {
     title: "Job Tracker",
     description: "Keep track of job applications and opportunities",
-    href: "https://your-job-tracker.com",
+    href: "https://job-trackr-one.vercel.app/",
     icon: Briefcase,
   },
   {
     title: "Meeting Notes",
     description: "Capture and organize your meeting notes",
-    href: "https://your-meeting-notes.com",
+    href: "https://meeting-notes-plum.vercel.app/",
     icon: MessageSquare,
   },
   {
     title: "To Do",
     description: "Manage your daily tasks and to-do lists",
-    href: "https://your-todo-app.com",
+    href: "https://todo-app-rouge-five-42.vercel.app/",
     icon: CheckSquare,
   },
 ];
